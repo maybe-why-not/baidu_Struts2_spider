@@ -63,7 +63,7 @@ class proxy_check(threading.Thread):
                             proxies = {tds[5].text.lower():ip}
 
                             try:
-                                r = requests.get(url='http://2019.ip138.com/ic.asp',proxies=proxies,timeout=5)
+                                r = requests.get(url='http://2000019.ip138.com/',proxies=proxies,timeout=5)
 
                             except Exception as e:
                                 pass
@@ -120,13 +120,13 @@ def main():
     else:
         for i in old_ips:
             try:
-                r = requests.get(url='http://2019.ip138.com/ic.asp',proxies={i.split(':',1)[0]:i.strip()},timeout=5)
+                r = requests.get(url='http://2000019.ip138.com/',proxies={i.split(':',1)[0]:i.strip()},timeout=5)
 
             except Exception as e:
                 pass
             else:
                 if re.findall(r'\[(.*?)\]',r.text):
-                    if (re.findall(r'\[(.*?)\]',r.text)[0] == i.strip().split(':',2)[1].replace('/','')):
+                    if re.findall(r'\[(.*?)\]',r.text)[0] == i.strip().split(':',2)[1].replace('/',''):
                         ip_list.append(i.strip())
                         proxy_list.append({i.split(':',1)[0]:i.strip()})
                         print(i.strip())
@@ -156,7 +156,7 @@ def main():
 if __name__ == '__main__':
     pages = 100
     threads_count = 10
-    old_filename = '2019-06-10.txt'
+    old_filename = '2019-09-20.txt'
 
     keys = [
             'Mozilla/5.0 (Linux; Android 4.1.1; Nexus 7 Build/JRO03D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19',
